@@ -20,22 +20,6 @@ def parse_calibration_value_1(calibration_line: str):
 first_digit_regex = re.compile("([0-9]|one|two|three|four|five|six|seven|eight|nine)")
 last_digit_regex = re.compile("([0-9]|eno|owt|eerht|ruof|evif|xis|neves|thgie|enin)")
 conjoined_digit_regex = re.compile("(oneight|twone|threeight|nineight|sevenine|fiveight)")
-conjoined_last_digit_test_cases = [
-    "rnbchhfk6884fivejtr5twonet",
-    "szcspm5sixtwovtrmvrthreefour7oneightqqj",
-    "threersqkhmgbsnlszskhslp57oneightlm",
-    "three8twoneh",
-    "1jkcfxpgmeight4qmhxrxjlghjsgnjptltvtwones",
-    "kgcmvpjvjbmnqbstwo45fiveoneightqhn",
-    "klgl8nntkkvhsixsixfour47fivetwonel",
-    "sftsktwofjxbhhvseven76sevengtptwonej",
-    "pvvbcnlq8djdp21lhdgkfkleightoneightlxv",
-    "eight7ninefqxjvm3oneightx",
-    "zhjqc66oneightxf",
-    "rzvlkjvone142oneightpv",
-    "7ffflzh5zrqftwonehht",
-    "57eighttcspqjtxponeightffd"
-]
 digit_regex = re.compile("[0-9]")
 word_to_digit = {
     "one": "1",
