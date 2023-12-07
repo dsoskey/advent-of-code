@@ -34,12 +34,12 @@ def game_value_2(game_str):
         amount = int(ramt)
         if amount > rgb.get(color, 0):
             rgb[color] = amount
-    return reduce(lambda l, r: l * r, rgb.values())
+    return reduce(int.__mul__, rgb.values())
 
 
 def total_value_2(games_str: str):
     mapped = map(game_value_2, games_str.splitlines())
-    return reduce(lambda l, r: l + r, mapped)
+    return reduce(int.__add__, mapped)
 
 
 if __name__ == "__main__":

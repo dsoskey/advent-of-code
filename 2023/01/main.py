@@ -65,7 +65,7 @@ def calculate_calibration(parse_method, calibration_text: str):
     lines = calibration_text.splitlines()
     calibration_values = map(parse_method, lines)
     dprint(f"found {len(lines)} entries")
-    return reduce(lambda l, r: l + r, calibration_values)
+    return reduce(int.__add__, calibration_values)
 
 
 def print_calibration(path, short=False):
