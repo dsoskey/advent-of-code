@@ -120,7 +120,9 @@ class PipeMap:
     def enclosed_area(self):
         steps, visited, connections = self.furthest_distance()
         pipes = visited.union(connections)
-        l = list(map(lambda x: [(x, y) for y in range(self.height)], range(self.width)))
+        x_range = list(map(lambda it: it / 2, range(self.width * 2 - 1)))
+        y_range = list(map(lambda it: it / 2, range(self.height * 2 - 1)))
+        l = list(map(lambda x: [(x, y) for y in y_range], x_range))
         all_coords = set([item for sublist in l for item in sublist])
 
         junk_tiles = all_coords.difference(visited).difference(connections)
@@ -133,7 +135,7 @@ class PipeMap:
             for n in neighbors:
                 if n not in visited_junk:
                     to_visit.add(n)
-        result = junk_tiles.difference(visited_junk)
+        result = set(filter(lambda it: (int(it[0]) == it[0] and int(it[1]) == it[1]), junk_tiles.difference(visited_junk)))
         # self.highlight_coords(visited)
         # self.highlight_with_gaps(visited, connections)
         self.highlight_with_gap_unreachables(visited, connections, visited_junk, result)
@@ -161,7 +163,6 @@ class PipeMap:
     def highlight_with_unreachables(self, coord_set, visited_junk, unreachable_gaps):
         for y in range(len(self.grid)):
             row = []
-            gap = []
             for x in range(len(self.grid[y])):
                 if (x, y) in coord_set:
                     row.append(PipeMap.to_pipe[self.char_at(x, y)])
@@ -210,8 +211,8 @@ class PipeMap:
 
 
 if __name__ == "__main__":
-    with open("./sample-0") as file:
+    with open("./input") as file:
         text = file.read()
         pipe_map = PipeMap(text)
-        # print(f"furthest distance {pipe_map.furthest_distance()[0]}")
+        print(f"furthest distance {pipe_map.furthest_distance()[0]}")
         print(f"num enclosed {pipe_map.enclosed_area()}")
