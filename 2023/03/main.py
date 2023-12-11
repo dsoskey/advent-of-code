@@ -1,5 +1,4 @@
 import re
-from functools import reduce
 
 number_regex = re.compile(r"\d+")
 symbol_regex = re.compile(r"[^.0-9]")
@@ -81,7 +80,7 @@ class Schematic:
                         to_add.append(int(match.get("group")))
                         for index in match.get("range"):
                             used_indices.add(index)
-        return reduce(int.__add__, to_add)
+        return sum(to_add)
 
     def visit_symbols_2(self):
         to_add = []
@@ -98,7 +97,7 @@ class Schematic:
                             used_indices.add(index)
             if len(neighbor_numbers) == 2:
                 to_add.append(neighbor_numbers[0] * neighbor_numbers[1])
-        return reduce(int.__add__, to_add)
+        return sum(to_add)
 
 
 if __name__ == "__main__":

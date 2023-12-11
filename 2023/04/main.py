@@ -1,5 +1,4 @@
 import re
-from functools import reduce
 
 
 def parse_ticket(raw_game: str):
@@ -33,6 +32,5 @@ def cards_won(raw_games):
 if __name__ == "__main__":
     with open("./input") as file:
         raw_games = file.read().splitlines(False)
-        point = reduce(int.__add__, map(points_won, raw_games))
-        print(f"total points {point}")
-        print(f"cards won {cards_won(raw_games)}")
+        print(f"total points {sum(map(points_won, raw_games))}")  # 18519
+        print(f"cards won {cards_won(raw_games)}")  # 11787590

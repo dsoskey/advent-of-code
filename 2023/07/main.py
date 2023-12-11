@@ -106,11 +106,11 @@ def get_total_winnings(raw_game: str, use_jokers=False):
     hands = list(map(lambda it: Hand(it, use_jokers), raw_game.splitlines()))
     by_rank = sorted(hands, key=cmp_to_key(Hand.winner(card_strengths)))
     points = [(i + 1) * hand.bid for i, hand in enumerate(by_rank)]
-    return reduce(int.__add__, points)
+    return sum(points)
 
 
 if __name__ == "__main__":
     with open("./input") as file:
         text = file.read()
-        print(f"total winnings: {get_total_winnings(text, False)}")
-        print(f"total winnings with Jokers: {get_total_winnings(text, True)}")
+        print(f"total winnings: {get_total_winnings(text, False)}")  # 251106089
+        print(f"total winnings with Jokers: {get_total_winnings(text, True)}")  # 249620106

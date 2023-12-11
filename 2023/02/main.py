@@ -39,11 +39,11 @@ def game_value_2(game_str):
 
 def total_value_2(games_str: str):
     mapped = map(game_value_2, games_str.splitlines())
-    return reduce(int.__add__, mapped)
+    return sum(mapped)
 
 
 if __name__ == "__main__":
     with open("./input") as file:
         text = file.read()
-        print(total_value_1(text, dict(blue=14, red=12, green=13)))
-        print(total_value_2(text))
+        print(total_value_1(text, dict(blue=14, red=12, green=13)))  # 2169
+        print(total_value_2(text))  # 60948
